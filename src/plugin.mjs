@@ -5,6 +5,8 @@ const defaultOpts = {
   phpConfigFile: ''
 }
 
+const modulePathRegex = /^[a-zA-Z]+_[a-zA-Z]+::.*$/gm
+
 const plugin = (opts = {}) => {
   opts = Object.assign({}, defaultOpts, opts)
 
@@ -19,14 +21,24 @@ const plugin = (opts = {}) => {
     postcssPlugin: 'postcss-magento-import',
     AtRule: {
       magento_import: (node) => {
-        modules.forEach((moduleName) => {
-          const params = node.params.replace(/["']/gm, '')
+        const params = node.params.replace(/["']/gm, '')
+
+        if (modulePathRegex.test(params)) {
           node.cloneAfter({
             name: 'import',
-            params: `"../${moduleName}/css/${params}"`,
+            params: `"../${params.replace('::', '/css/')}"`,
             source: node.source
           })
-        })
+        } else {
+          modules.forEach((moduleName) => {
+            node.cloneAfter({
+              name: 'import',
+              params: `"../${moduleName}/css/${params}"`,
+              source: node.source
+            })
+          })
+        }
+
         node.remove()
       }
     }

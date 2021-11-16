@@ -23,4 +23,12 @@ test('should replace the magento_import node with the modules from config', () =
   )
 })
 
+test('should replace the magento_import if it contains the module name itself', () => {
+  const instance = plugin()
+  const res = postcss([instance]).process(
+    '@magento_import "Magento_Store::source/_module.css"'
+  )
+  assert.equal(res.css, '@import "../Magento_Store/css/source/_module.css"')
+})
+
 test.run()
