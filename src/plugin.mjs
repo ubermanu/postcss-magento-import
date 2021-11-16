@@ -1,25 +1,23 @@
 /**
  * @type {import('postcss').PluginCreator}
  */
-export default (opts = {}) => ({
-  postcssPlugin: 'postcss-magento-import'
-  /*
-    Root (root, postcss) {
-      // Transform CSS AST here
+const plugin = (opts = {}) => ({
+  postcssPlugin: 'postcss-magento-import',
+  AtRule: {
+    magento_import: (node) => {
+      const modules = opts.modules || []
+      modules.forEach((moduleName) => {
+        node.cloneAfter({
+          name: 'import',
+          params: `"../${moduleName}/${node.params.replace(/["']/gm, '')}"`,
+          source: node.source
+        })
+      })
+      node.remove()
     }
-    */
-
-  /*
-    Declaration (decl, postcss) {
-      // The faster way to find Declaration node
-    }
-    */
-
-  /*
-    Declaration: {
-      color: (decl, postcss) {
-        // The fastest way find Declaration node if you know property name
-      }
-    }
-    */
+  }
 })
+
+plugin.postcss = true
+
+export default plugin
