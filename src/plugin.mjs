@@ -22,7 +22,10 @@ const plugin = (opts = {}) => {
         modules.forEach((moduleName) => {
           node.cloneAfter({
             name: 'import',
-            params: `"../${moduleName}/${node.params.replace(/["']/gm, '')}"`,
+            params: `"../${moduleName}/css/${node.params.replace(
+              /["']/gm,
+              ''
+            )}"`,
             source: node.source
           })
         })
