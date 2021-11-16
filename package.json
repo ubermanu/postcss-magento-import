@@ -15,6 +15,9 @@
     "type": "git",
     "url": "git+https://github.com/ubermanu/postcss-magento-import"
   },
+  "files": [
+    "src/*"
+  ],
   "scripts": {
     "test": "uvu tests"
   },
