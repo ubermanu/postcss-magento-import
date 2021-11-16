@@ -1,0 +1,32 @@
+{
+  "name": "postcss-magento-import",
+  "version": "1.0.0",
+  "description": "PostCSS plugin to import magento dependencies (according to config.php)",
+  "module": "src/plugin.mjs",
+  "keywords": [
+    "postcss",
+    "css",
+    "postcss-plugin",
+    "magento"
+  ],
+  "author": "ubermanu <manu@paca.happy-dev.fr>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ubermanu/postcss-magento-import"
+  },
+  "scripts": {
+    "test": "uvu tests"
+  },
+  "dependencies": {
+    "php-parser": "^3.0.3"
+  },
+  "peerDependencies": {
+    "postcss": "^8.3.0"
+  },
+  "devDependencies": {
+    "postcss": "^8.3.11",
+    "prettier": "^2.4.1",
+    "uvu": "^0.5.2"
+  }
+}
