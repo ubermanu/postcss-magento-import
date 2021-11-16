@@ -26,14 +26,14 @@ const plugin = (opts = {}) => {
         if (modulePathRegex.test(params)) {
           node.cloneAfter({
             name: 'import',
-            params: `"../${params.replace('::', '/css/')}"`,
+            params: `"../../${params.replace('::', '/web/css/')}"`,
             source: node.source
           })
         } else {
           modules.forEach((moduleName) => {
             node.cloneAfter({
               name: 'import',
-              params: `"../${moduleName}/css/${params}"`,
+              params: `"../../${moduleName}/web/css/${params}"`,
               source: node.source
             })
           })

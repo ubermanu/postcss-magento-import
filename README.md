@@ -32,6 +32,6 @@ And your css file:
 It should output something like:
 
 ```css
-@import "../Magento_Store/css/source/_module.css";
-@import "../Magento_Catalog/css/source/_module.css";
+@import "../../Magento_Store/web/css/source/_module.css";
+@import "../../Magento_Catalog/web/css/source/_module.css";
 ```
