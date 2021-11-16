@@ -1,7 +1,8 @@
 {
   "name": "postcss-magento-import",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "PostCSS plugin to import magento dependencies (according to config.php)",
+  "type": "module",
   "module": "src/plugin.mjs",
   "keywords": [
     "postcss",
