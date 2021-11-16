@@ -13,7 +13,7 @@ test('should replace the magento_import node with the modules files', () => {
 })
 
 test('should replace the magento_import node with the modules from config', () => {
-  const instance = plugin({ configFile: 'tests/fixtures/config_short.php' })
+  const instance = plugin({ phpConfigFile: 'tests/fixtures/config_short.php' })
   const res = postcss([instance]).process(
     '@magento_import "source/_module.css"'
   )

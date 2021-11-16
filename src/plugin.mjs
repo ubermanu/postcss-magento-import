@@ -2,7 +2,7 @@ import { getModulesFromFile } from './magento.mjs'
 
 const defaultOpts = {
   modules: [],
-  configFile: ''
+  phpConfigFile: ''
 }
 
 const plugin = (opts = {}) => {
@@ -11,8 +11,8 @@ const plugin = (opts = {}) => {
   let modules = opts.modules || []
 
   // Load the modules from the config file if empty
-  if (modules.length === 0 && opts.configFile.length > 0) {
-    modules = getModulesFromFile(opts.configFile)
+  if (modules.length === 0 && opts.phpConfigFile.length > 0) {
+    modules = getModulesFromFile(opts.phpConfigFile)
   }
 
   return {
@@ -20,12 +20,10 @@ const plugin = (opts = {}) => {
     AtRule: {
       magento_import: (node) => {
         modules.forEach((moduleName) => {
+          const params = node.params.replace(/["']/gm, '')
           node.cloneAfter({
             name: 'import',
-            params: `"../${moduleName}/css/${node.params.replace(
-              /["']/gm,
-              ''
-            )}"`,
+            params: `"../${moduleName}/css/${params}"`,
             source: node.source
           })
         })

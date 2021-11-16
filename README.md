@@ -16,7 +16,7 @@ const postcssMagentoImport = require('postcss-magento-import');
 module.exports = {
     plugins: [
         postcssMagentoImport({
-            configFile: 'app/etc/config.php',
+            phpConfigFile: 'app/etc/config.php',
             // or modules: [ 'Magento_Store', 'Magento_Catalog' ]
         })
     ]
